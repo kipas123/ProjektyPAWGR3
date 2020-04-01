@@ -10,20 +10,16 @@
 	<header class="page-header">
 	<h1 class="page-title">Kalkulator kredytowy</h1>
 	</header>
-	<br>       
-                            <!-- Formularz -->
-        
-        
-        
-        <form action="{$conf->action_url}calcCompute" method="post">
+	<br>                         
+        <form action="{$conf->app_url}/app/ctrl.php" method="post">
 	<div class="row">
             <div class="col-sm-4">
                 <span class="tekscik">Kwota kredytu: </span>
-                <input class="form-control" type="text" placeholder="" name="{$form->x}">
+                <input class="form-control" type="text" placeholder="" name="x">
 	    </div>
 	<div class="col-sm-4">
                 <span class="tekscik">Rata miesieczna: </span>
-		<input class="form-control" type="text" placeholder="" name="{$form->y}">
+		<input class="form-control" type="text" placeholder="" name="y">
 	</div>
 	<div class="col-sm-4">
 							
@@ -44,12 +40,9 @@
 	<br><br>
 	</form>
         
-                            <!-- /Formularz -->
-                            
-                            <!-- Powiadomienia -->
-        {* wyświeltenie listy błędów, jeśli istnieją *}
-{if $msgs->isError()}
         <div class="messages">
+{* wyświeltenie listy błędów, jeśli istnieją *}
+{if $msgs->isError()}
 	<h4>Wystąpiły błędy: </h4>
 	<ol class="err">
 	{foreach $msgs->getErrors() as $err}
@@ -58,12 +51,10 @@
 	{/strip}
 	{/foreach}
 	</ol>
-        </div>
 {/if}
 
 {* wyświeltenie listy informacji, jeśli istnieją *}
 {if $msgs->isInfo()}
-    <div class="messages">
 	<h4>Informacje: </h4>
 	<ol class="inf">
 	{foreach $msgs->getInfos() as $inf}
@@ -72,18 +63,15 @@
 	{/strip}
 	{/foreach}
 	</ol>
-    </div>
 {/if}
 
 {if isset($res->result)}
-    <div class="messages">
 <h4>Miesiace:
 
 	{$res->result}
 </h4>
-    </div>
 {/if}
-                         <!-- /Powiadomienia -->
+        </div>
         
         
         </article>
@@ -122,7 +110,7 @@
 	<div class="col-md-6 widget">
 	<div class="widget-body">
             <p class="simplenav">
-            <a href="{$conf->app_url}">Home</a> | 
+            <a href="{$conf->app_url}/index.php">Home</a> | 
 	    <b><a href="{$conf->app_url}/app/security/logout.php">Wyloguj</a></b>
             </p>
 	</div>

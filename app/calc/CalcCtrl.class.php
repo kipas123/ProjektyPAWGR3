@@ -4,8 +4,8 @@
 
 require_once $conf->root_path.'/libs/smarty/Smarty.class.php';
 require_once $conf->root_path.'/libs/Messages.class.php';
-require_once $conf->root_path.'/app/CalcForm.class.php';
-require_once $conf->root_path.'/app/CalcResult.class.php';
+require_once $conf->root_path.'/app/calc/CalcForm.class.php';
+require_once $conf->root_path.'/app/calc/CalcResult.class.php';
 
 /** Kontroler kalkulatora
  * @author Przemysław Kudłacik
@@ -34,6 +34,7 @@ class CalcCtrl {
 		$this->form->x = isset($_REQUEST ['x']) ? $_REQUEST ['x'] : null;
 		$this->form->y = isset($_REQUEST ['y']) ? $_REQUEST ['y'] : null;
 		$this->form->op = isset($_REQUEST ['op']) ? $_REQUEST ['op'] : null;
+                
 	}
 	
 	/** 
@@ -122,9 +123,9 @@ class CalcCtrl {
 		$smarty = new Smarty();
 		$smarty->assign('conf',$conf);
 		
-		$smarty->assign('page_title','Przykład 05');
-		$smarty->assign('page_description','Obiektowość. Funkcjonalność aplikacji zamknięta w metodach różnych obiektów. Pełen model MVC.');
-		$smarty->assign('page_header','Obiekty w PHP');
+		$smarty->assign('page_title','Przykład 06');
+		$smarty->assign('page_description','Obiektowość.');
+		$smarty->assign('page_header','Obiekty w PHP_Kontroler');
 		
 		$smarty->assign('msgs',$this->msgs);
 		$smarty->assign('form',$this->form);

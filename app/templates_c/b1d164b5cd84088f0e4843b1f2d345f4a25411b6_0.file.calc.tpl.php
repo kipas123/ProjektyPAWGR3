@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-03-31 16:28:29
-  from 'C:\xampp\htdocs\Projekty_MEINE\php_05_MEINE\app\calc.tpl' */
+/* Smarty version 3.1.34-dev-7, created on 2020-04-01 13:06:44
+  from 'C:\xampp\htdocs\Projekty_MEINE\php_06_Kontroler_MEINE\app\calc.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5e83538d4b5a86_22151409',
+  'unifunc' => 'content_5e8475c434c807_16646229',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'ebfc683f91c262d33e6bb083b457f84495778bdb' => 
+    'b1d164b5cd84088f0e4843b1f2d345f4a25411b6' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\Projekty_MEINE\\php_05_MEINE\\app\\calc.tpl',
-      1 => 1585664857,
+      0 => 'C:\\xampp\\htdocs\\Projekty_MEINE\\php_06_Kontroler_MEINE\\app\\calc.tpl',
+      1 => 1585739147,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5e83538d4b5a86_22151409 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5e8475c434c807_16646229 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_loadInheritance();
 $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 ?>
@@ -28,26 +28,26 @@ $_smarty_tpl->inheritance->init($_smarty_tpl, true);
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21098501135e83538d4a7119_93716942', 'content');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_11507335005e8475c433f4f8_21930863', 'content');
 ?>
 
 
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_7942990495e83538d4b4713_10209544', 'sidebar');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_21454189555e8475c434b626_38324022', 'sidebar');
 ?>
 
     
 <?php 
-$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_14534470825e83538d4b4c63_92671333', 'footer');
+$_smarty_tpl->inheritance->instanceBlock($_smarty_tpl, 'Block_17157313665e8475c434bba8_23427421', 'footer');
 $_smarty_tpl->inheritance->endChild($_smarty_tpl, "../templates/main.tpl");
 }
 /* {block 'content'} */
-class Block_21098501135e83538d4a7119_93716942 extends Smarty_Internal_Block
+class Block_11507335005e8475c433f4f8_21930863 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'content' => 
   array (
-    0 => 'Block_21098501135e83538d4a7119_93716942',
+    0 => 'Block_11507335005e8475c433f4f8_21930863',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -61,17 +61,23 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 	<header class="page-header">
 	<h1 class="page-title">Kalkulator kredytowy</h1>
 	</header>
-	<br>                         
-        <form action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/app/calc.php" method="post">
+	<br>       
+                            <!-- Formularz -->
+        
+        
+        
+        <form action="<?php echo $_smarty_tpl->tpl_vars['conf']->value->action_url;?>
+calcCompute" method="post">
 	<div class="row">
             <div class="col-sm-4">
                 <span class="tekscik">Kwota kredytu: </span>
-                <input class="form-control" type="text" placeholder="" name="x">
+                <input class="form-control" type="text" placeholder="" name="<?php echo $_smarty_tpl->tpl_vars['form']->value->x;?>
+">
 	    </div>
 	<div class="col-sm-4">
                 <span class="tekscik">Rata miesieczna: </span>
-		<input class="form-control" type="text" placeholder="" name="y">
+		<input class="form-control" type="text" placeholder="" name="<?php echo $_smarty_tpl->tpl_vars['form']->value->y;?>
+">
 	</div>
 	<div class="col-sm-4">
 							
@@ -92,8 +98,11 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 	<br><br>
 	</form>
         
+                            <!-- /Formularz -->
+                            
+                            <!-- Powiadomienia -->
+        <?php if ($_smarty_tpl->tpl_vars['msgs']->value->isError()) {?>
         <div class="messages">
-<?php if ($_smarty_tpl->tpl_vars['msgs']->value->isError()) {?>
 	<h4>Wystąpiły błędy: </h4>
 	<ol class="err">
 	<?php
@@ -108,9 +117,11 @@ foreach ($_from as $_smarty_tpl->tpl_vars['err']->value) {
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 	</ol>
+        </div>
 <?php }?>
 
 <?php if ($_smarty_tpl->tpl_vars['msgs']->value->isInfo()) {?>
+    <div class="messages">
 	<h4>Informacje: </h4>
 	<ol class="inf">
 	<?php
@@ -125,16 +136,19 @@ foreach ($_from as $_smarty_tpl->tpl_vars['inf']->value) {
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 	</ol>
+    </div>
 <?php }?>
 
 <?php if (isset($_smarty_tpl->tpl_vars['res']->value->result)) {?>
+    <div class="messages">
 <h4>Miesiace:
 
 	<?php echo $_smarty_tpl->tpl_vars['res']->value->result;?>
 
 </h4>
+    </div>
 <?php }?>
-        </div>
+                         <!-- /Powiadomienia -->
         
         
         </article>
@@ -143,12 +157,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 }
 /* {/block 'content'} */
 /* {block 'sidebar'} */
-class Block_7942990495e83538d4b4713_10209544 extends Smarty_Internal_Block
+class Block_21454189555e8475c434b626_38324022 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'sidebar' => 
   array (
-    0 => 'Block_7942990495e83538d4b4713_10209544',
+    0 => 'Block_21454189555e8475c434b626_38324022',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -179,12 +193,12 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 }
 /* {/block 'sidebar'} */
 /* {block 'footer'} */
-class Block_14534470825e83538d4b4c63_92671333 extends Smarty_Internal_Block
+class Block_17157313665e8475c434bba8_23427421 extends Smarty_Internal_Block
 {
 public $subBlocks = array (
   'footer' => 
   array (
-    0 => 'Block_14534470825e83538d4b4c63_92671333',
+    0 => 'Block_17157313665e8475c434bba8_23427421',
   ),
 );
 public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
@@ -200,7 +214,7 @@ public function callBlock(Smarty_Internal_Template $_smarty_tpl) {
 	<div class="widget-body">
             <p class="simplenav">
             <a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
-/index.php">Home</a> | 
+">Home</a> | 
 	    <b><a href="<?php echo $_smarty_tpl->tpl_vars['conf']->value->app_url;?>
 /app/security/logout.php">Wyloguj</a></b>
             </p>
