@@ -1,13 +1,13 @@
 <?php
-require_once dirname(__FILE__).'/core/Config.class.php';
-$conf = new Config();
+require_once 'core/Config.class.php';
+$conf = new core\Config();
 include dirname(__FILE__).'/config.php'; //ustaw konfigurację
 
 function &getConf(){ global $conf; return $conf; }
 
 //załaduj definicję klasy Messages i stwórz obiekt
-require_once getConf()->root_path.'/core/Messages.class.php';
-$msgs = new Messages();
+require_once 'core/Messages.class.php';
+$msgs = new core\Messages();
 
 function &getMessages(){ global $msgs; return $msgs; }
 
@@ -29,6 +29,13 @@ function &getSmarty(){
 		));
 	}
 	return $smarty;
+}
+
+require_once 'core/ClassLoader.class.php'; //załaduj i stwórz loader klas
+$cloader = new core\ClassLoader();
+function &getLoader() {
+    global $cloader;
+    return $cloader;
 }
 
 require_once getConf()->root_path.'/core/functions.php';

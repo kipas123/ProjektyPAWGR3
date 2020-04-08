@@ -5,9 +5,8 @@ require_once 'init.php';
 switch ($action) {
 	case 'calcCompute' :
 		// załaduj definicję kontrolera
-		include_once $conf->root_path.'/app/controllers/CalcCtrl.class.php';
 		// utwórz obiekt i uzyj
-		$ctrl = new CalcCtrl ();
+		$ctrl = new app\controllers\CalcCtrl();
                 //logowanie
                // include $conf->root_path.'/app/security/check.php';
 		$ctrl->process ();
@@ -21,9 +20,8 @@ switch ($action) {
 	break;
 	default : // 'calcView'
 	    // załaduj definicję kontrolera
-		include_once $conf->root_path.'/app/controllers/CalcCtrl.class.php';
 		// utwórz obiekt i uzyj
-		$ctrl = new CalcCtrl ();
+		$ctrl = new app\controllers\CalcCtrl();
 		$ctrl->generateView ();
 	break;
 

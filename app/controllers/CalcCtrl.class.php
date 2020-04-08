@@ -1,9 +1,9 @@
 <?php
 // W skrypcie definicji kontrolera nie trzeba dołączać problematycznego skryptu config.php,
 // ponieważ będzie on użyty w miejscach, gdzie config.php zostanie już wywołany.
-
-require_once $conf->root_path.'/app/controllers/CalcForm.class.php';
-require_once $conf->root_path.'/app/controllers/CalcResult.class.php';
+namespace app\controllers;
+use app\forms\CalcForm;
+use app\transfer\CalcResult;
 
 /** Kontroler kalkulatora
  * @author Przemysław Kudłacik
