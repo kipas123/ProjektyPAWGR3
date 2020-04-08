@@ -34,7 +34,6 @@ class CalcCtrl {
 		$this->form->x = isset($_REQUEST ['x']) ? $_REQUEST ['x'] : null;
 		$this->form->y = isset($_REQUEST ['y']) ? $_REQUEST ['y'] : null;
 		$this->form->op = isset($_REQUEST ['op']) ? $_REQUEST ['op'] : null;
-                
 	}
 	
 	/** 
@@ -123,14 +122,14 @@ class CalcCtrl {
 		$smarty = new Smarty();
 		$smarty->assign('conf',$conf);
 		
-		$smarty->assign('page_title','Przykład 06');
-		$smarty->assign('page_description','Obiektowość.');
-		$smarty->assign('page_header','Obiekty w PHP_Kontroler');
+		$smarty->assign('page_title','Przykład 05');
+		$smarty->assign('page_description','Obiektowość. Funkcjonalność aplikacji zamknięta w metodach różnych obiektów. Pełen model MVC.');
+		$smarty->assign('page_header','Obiekty w PHP');
 		
 		$smarty->assign('msgs',$this->msgs);
 		$smarty->assign('form',$this->form);
 		$smarty->assign('res',$this->result);
 		
-		$smarty->display($conf->root_path.'/app/calc.tpl');
+		$smarty->display($conf->root_path.'/app/calc/calc.tpl');
 	}
 }

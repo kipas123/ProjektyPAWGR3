@@ -1,4 +1,4 @@
-{extends file="../templates/main.tpl"}
+{extends file=$conf->root_path|cat:"/templates/main.tpl"}
 
 
 {block name=content}
@@ -11,15 +11,15 @@
 	<h1 class="page-title">Kalkulator kredytowy</h1>
 	</header>
 	<br>                         
-        <form action="{$conf->app_url}/app/ctrl.php" method="post">
+        <form action="{$conf->action_root}calcCompute" method="post">
 	<div class="row">
             <div class="col-sm-4">
                 <span class="tekscik">Kwota kredytu: </span>
-                <input class="form-control" type="text" placeholder="" name="x">
+                <input class="form-control" type="text" placeholder="{$form->x}" name="x">
 	    </div>
 	<div class="col-sm-4">
                 <span class="tekscik">Rata miesieczna: </span>
-		<input class="form-control" type="text" placeholder="" name="y">
+		<input class="form-control" type="text" placeholder="{$form->y}" name="y">
 	</div>
 	<div class="col-sm-4">
 							
@@ -40,9 +40,9 @@
 	<br><br>
 	</form>
         
-        <div class="messages">
 {* wyświeltenie listy błędów, jeśli istnieją *}
 {if $msgs->isError()}
+        <div class="errxx">
 	<h4>Wystąpiły błędy: </h4>
 	<ol class="err">
 	{foreach $msgs->getErrors() as $err}
@@ -51,10 +51,12 @@
 	{/strip}
 	{/foreach}
 	</ol>
+        </div>
 {/if}
 
 {* wyświeltenie listy informacji, jeśli istnieją *}
 {if $msgs->isInfo()}
+    <div class="messages">
 	<h4>Informacje: </h4>
 	<ol class="inf">
 	{foreach $msgs->getInfos() as $inf}
@@ -63,15 +65,17 @@
 	{/strip}
 	{/foreach}
 	</ol>
+    </div>
 {/if}
 
 {if isset($res->result)}
+    <div class="messages">
 <h4>Miesiace:
 
 	{$res->result}
 </h4>
+    </div>
 {/if}
-        </div>
         
         
         </article>
@@ -110,7 +114,7 @@
 	<div class="col-md-6 widget">
 	<div class="widget-body">
             <p class="simplenav">
-            <a href="{$conf->app_url}/index.php">Home</a> | 
+            <a href="{$conf->app_url}">Home</a> | 
 	    <b><a href="{$conf->app_url}/app/security/logout.php">Wyloguj</a></b>
             </p>
 	</div>

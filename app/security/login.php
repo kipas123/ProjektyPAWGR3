@@ -58,7 +58,7 @@ if (!validateLogin($form,$messages)) {
 	//ok przekieruj lub "forward" na stronę główną
 	
 	//redirect - przeglądarka dostanie ten adres do "przejścia" na niego (wysłania kolejnego żądania)
-	header("Location: ".$conf->app_url);
+	header("Location: ".($conf->action_root.'calcCompute'));
 	
 	//"forward"
 	//include _ROOT_PATH.'/index.php';
