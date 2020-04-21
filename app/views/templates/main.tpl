@@ -7,7 +7,7 @@
 	<title>Kalkulator</title>
 
 	<link rel="shortcut icon" href="{$conf->app_url}/assets/images/gt_favicon.png">
-	
+	<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" 
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="{$conf->app_url}/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="{$conf->app_url}/assets/css/font-awesome.min.css">
@@ -25,25 +25,8 @@
 
 <body>
 	<!-- Fixed navbar -->
-	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
-		<div class="container">
-			<div class="navbar-header">
-				<!-- Button for smallest screens -->
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-				<a class="navbar-brand" href="{$conf->app_url}"><img src="{$conf->app_url}/assets/images/logo.png" width="148" height="70"></a>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav pull-right">
-					<li><a href="{$conf->app_url}">Home</a></li>
-					<!--<li><a href="about.html">About</a></li> -->
-					<li><a class="btn" href="{$conf->app_url}/app/security/logout.php">Wyloguj</a></li>
-				</ul>
-			</div><!--/.nav-collapse -->
-		</div>
-	</div> 
-	<!-- /.navbar -->
-
-	<header id="head" class="secondary"></header>
+{block name=header}{/block}
+    
 
 	<!-- container -->
 	<div class="container">
@@ -53,12 +36,12 @@
 			<li class="active">About</li>
 		</ol>
 
-        {block name=content} Domyślna treść zawartości .... {/block}
-        {block name=sidebar} Domyślna treść zawartości .... {/block}
+        {block name=content}{/block}
+        {block name=sidebar}{/block}
 	</div>
         <!-- /container -->
         
-        {block name=footer} Domyślna treść zawartości .... {/block}
+        {block name=footer}{/block}
 		
 
 

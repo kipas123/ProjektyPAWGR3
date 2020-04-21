@@ -83,16 +83,32 @@ class CalcCtrl {
 			//wykonanie operacji
 			switch ($this->form->op) {
 				case '5' :
-					$this->result->result = (int)(($this->form->x*1.05) / $this->form->y);
+					if (inRole('admin')) {
+						$this->result->result = (int)(($this->form->x*1.05) / $this->form->y);
+					} else {
+						getMessages()->addError('Tylko administrator może wykonać tę operację');
+					}
 					break;
 				case '10' :
-					$this->result->result = (int)(($this->form->x*1.1) / $this->form->y);
+					if (inRole('admin')) {
+						$this->result->result = (int)(($this->form->x*1.10) / $this->form->y);
+					} else {
+						getMessages()->addError('Tylko administrator może wykonać tę operację');
+					}
 					break;
 				case '15' :
-					$this->result->result = (int)(($this->form->x*1.15) / $this->form->y);
+					if (inRole('admin')) {
+						$this->result->result = (int)(($this->form->x*1.15) / $this->form->y);
+					} else {
+						getMessages()->addError('Tylko administrator może wykonać tę operację');
+					}
 					break;
                                 case '20' :
-					$this->result->result = (int)(($this->form->x*1.2) / $this->form->y);
+					if (inRole('admin')) {
+						$this->result->result = (int)(($this->form->x*1.20) / $this->form->y);
+					} else {
+						getMessages()->addError('Tylko administrator może wykonać tę operację');
+					}
 					break;
 				default :
 					$this->result->result = (int)(($this->form->x*1.05) / $this->form->y);
@@ -110,6 +126,7 @@ class CalcCtrl {
 	 * Wygenerowanie widoku
 	 */
 	public function generateView(){
+                getSmarty()->assign('user',unserialize($_SESSION['user']));
 		getSmarty()->assign('page_title','Przykład 05');
 		getSmarty()->assign('page_description','Obiektowość. Funkcjonalność aplikacji zamknięta w metodach różnych obiektów. Pełen model MVC.');
 		getSmarty()->assign('page_header','Obiekty w PHP');

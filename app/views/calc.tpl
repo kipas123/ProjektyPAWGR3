@@ -1,5 +1,25 @@
 {extends file= "main.tpl" }
+{block name=header}
+    	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+				<a class="navbar-brand" href="{$conf->app_url}"><img src="{$conf->app_url}/assets/images/logo.png" width="148" height="70"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="{$conf->app_url}">Home</a></li>
+					<!--<li><a href="about.html">About</a></li> -->
+					<li><a class="btn" href="{$conf->app_url}/app/security/logout.php">Wyloguj</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
 
+	<header id="head" class="secondary"></header>
+{/block}   
 
 {block name=content}
     

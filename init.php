@@ -38,6 +38,9 @@ function &getLoader() {
     return $cloader;
 }
 
-require_once getConf()->root_path.'/core/functions.php';
+require_once 'core/functions.php';
+
+session_start(); //uruchom lub kontynuuj sesję
+$conf->roles = isset($_SESSION['_roles']) ? unserialize($_SESSION['_roles']) : array(); //wczytaj role
 
 $action = getFromRequest('action');
