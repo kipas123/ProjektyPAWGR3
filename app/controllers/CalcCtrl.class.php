@@ -4,6 +4,7 @@
 namespace app\controllers;
 use app\forms\CalcForm;
 use app\transfer\CalcResult;
+use Medoo\Medoo;
 
 /** Kontroler kalkulatora
  * @author Przemysław Kudłacik
@@ -114,9 +115,46 @@ class CalcCtrl {
 					$this->result->result = (int)(($this->form->x*1.05) / $this->form->y);
 					break;
 			}
+                
+                        
+                 try{       
+                 
+                 $database = new Medoo([
+                // required
+                'database_type' => 'mysql',
+                'database_name' => 'kalkulator',
+                'server' => 'localhost',
+                'username' => 'root',
+                'password' => '',
+
+                // [optional]
+                'charset' => 'utf8mb4',
+                'collation' => 'utf8mb4_polish_ci',
+                'port' => 3306,
+                 'option' => [
+		\PDO::ATTR_CASE => \PDO::CASE_NATURAL,
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION    
+                 ]
+                      ]);
+                 $database->insert("calc", [
+                     "kwota" => $this->form->x,
+                     "rataMies" => $this->form->y,
+                     "oprocentowanie" => $this->form->op,
+                     "wynik" => $this->result->result,
+                     "data" => date("Y-m-d H:i:s")
+                     
+                 ]);
+                 
+                 
+                 
+                 }catch(\PDOException $ex){
+                     getMessages()->addError("DB error:".$ex->getMessage());
+                 }
+                     
 			
 			getMessages()->addInfo('Wykonano obliczenia.');
 		}
+                
 		
 		$this->generateView();
 	}
@@ -124,10 +162,43 @@ class CalcCtrl {
 		public function action_calcShow(){
 		$this->generateView();
 	}
+        
+        public function action_sqlBaseShow(){
+                 try{       
+                 
+                 $database = new Medoo([
+                // required
+                'database_type' => 'mysql',
+                'database_name' => 'kalkulator',
+                'server' => 'localhost',
+                'username' => 'root',
+                'password' => '',
+
+                // [optional]
+                'charset' => 'utf8mb4',
+                'collation' => 'utf8mb4_polish_ci',
+                'port' => 3306,
+                 'option' => [
+		\PDO::ATTR_CASE => \PDO::CASE_NATURAL,
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION    
+                 ]
+                      ]);
+                 // Select all columns
+                $datas = $database->select("calc", "*");
+                 
+                 
+                 
+                 }catch(\PDOException $ex){
+                     getMessages()->addError("DB error:".$ex->getMessage());
+                 }
+                getSmarty()->assign('baza',$datas);
+		$this->generateView('dataBase.tpl');
+	}
+        
 	/**
 	 * Wygenerowanie widoku
 	 */
-	public function generateView(){
+	public function generateView($type='calc.tpl'){
                 getSmarty()->assign('user',unserialize($_SESSION['user']));
 		getSmarty()->assign('page_title','Przykład 05');
 		getSmarty()->assign('page_description','Obiektowość. Funkcjonalność aplikacji zamknięta w metodach różnych obiektów. Pełen model MVC.');
@@ -136,6 +207,6 @@ class CalcCtrl {
 		getSmarty()->assign('form',$this->form);
 		getSmarty()->assign('res',$this->result);
 		
-		getSmarty()->display('calc.tpl');
+		getSmarty()->display($type);
 	}
 }
